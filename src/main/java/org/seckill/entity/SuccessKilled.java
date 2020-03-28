@@ -12,7 +12,7 @@ import java.util.Date;
  * </pre>
  */
 @Data
-public class SeuccessKilled {
+public class SuccessKilled {
 
     private Long seckillId;
 
