@@ -9,16 +9,9 @@
         <!--打印sql-->
         <setting name="logImpl" value="STDOUT_LOGGING" />
         <!--获取数据库自增主键-->
-        <setting name="userGeneratedKeys" value="true"/>
+        <setting name="useGeneratedKeys" value="true"/>
     </settings>
     <typeAliases>
         <package name="org.seckill.entity"/>
     </typeAliases>
-    <plugins>
-        <plugin interceptor="com.github.pagehelper.PageInterceptor" >
-            <!--分页合理化-->
-            <property name="reasonable" value="true"/>
-
-        </plugin>
-    </plugins>
 </configuration>

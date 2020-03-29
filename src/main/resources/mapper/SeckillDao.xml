@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.seckill.dao.SecKillDao">
     <resultMap type="org.seckill.entity.SecKill" id="BaseResultMap">
-        <result column="seckill_id" property="seckillId" jdbcType="LONG"/>
+        <result column="seckill_id" property="seckillId" jdbcType="BIGINT"/>
         <result column="name" property="name" jdbcType="INTEGER"/>
         <result column="number" property="number" jdbcType="INTEGER"/>
         <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
@@ -13,22 +13,22 @@
     <update id  = "reduceNumber">
        update seckill
        set number = number - 1
-       where seckill_id = #{seckillId, jdbcType = LONG}
+       where seckill_id = #{seckillId, jdbcType = BIGINT}
        and start_time <![CDATA[ <= ]]> #{killTime}
        and end_time <![CDATA[ >= ]]> #{killTime}
-       and num > 0
+       and number > 0
     </update>
     <select id="queryById" resultType="org.seckill.entity.SecKill" parameterType="java.lang.Long">
        select  seckill_id, name, number, start_time, end_time,
        create_time
        from seckill
-       where seckill_id = #{seckillId}
+       where seckill_id = #{seckillId, jdbcType = BIGINT}
     </select>
     <select id="queryAll" resultType="org.seckill.entity.SecKill" >
        select  seckill_id, name, number, start_time, end_time,
        create_time
        from seckill
        order by create_time
-       limit #{offset, jdbcType = INTEGER}
+       limit #{offset, jdbcType = INTEGER},#{limit, jdbcType = INTEGER}
     </select>
 </mapper>

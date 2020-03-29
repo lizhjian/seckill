@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.seckill.dao.SecKillDao">
+<mapper namespace="org.seckill.dao.SuccessKillDao">
     <resultMap type="org.seckill.entity.SecKill" id="BaseResultMap">
-        <result column="seckill_id" property="seckillId" jdbcType="LONG"/>
+        <result column="seckill_id" property="seckillId" jdbcType="BIGINT"/>
         <result column="user_phone" property="user_phone" jdbcType="VARCHAR"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
@@ -11,9 +11,9 @@
     <insert id="insertSuccessKilled">
         <!--insert ignore 插入重复不报错,返回0-->
         insert ignore into success_killed(seckill_id, user_phone, create_time)
-        values (#{seckillId, jdbcType = LONG},
-        #{seckillId, jdbcType = LONG},
-        #{seckillId, jdbcType = LONG}
+        values (#{seckillId, jdbcType = BIGINT},
+        #{seckillId, jdbcType = BIGINT},
+        #{seckillId, jdbcType = BIGINT}
         )
     </insert>
 
