@@ -18,7 +18,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class SecKill {
 
-    private long seckillId;
+    private Long seckillId;
 
     private String name;
 

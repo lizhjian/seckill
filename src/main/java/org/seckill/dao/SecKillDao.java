@@ -13,7 +13,7 @@ import java.util.List;
  * date ：2020-03-29 07:34
  * </pre>
  */
-public interface SeckillDao {
+public interface SecKillDao {
 
     /**
      * 减库存

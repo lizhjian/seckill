@@ -29,6 +29,4 @@ public interface SuccessKillDao {
      * @return SuccessKilled
      */
     SuccessKilled queryByIdWithSeckill(@Param("seckillId")long seckillId, @Param("userPhone") long userPhone);
-
-
 }
