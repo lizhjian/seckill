@@ -12,6 +12,7 @@ import org.seckill.exception.SeckillCloseException;
 import org.seckill.exception.SeckillException;
 import org.seckill.service.SeckillService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -42,6 +43,7 @@ public class SeckillServiceImpl implements SeckillService {
     }
 
     @Override
+    @Transactional
     public SeckillResponse executeSeckill(long seckillId, long userPhone, String md5)
             throws SeckillException, RepeatKillException, SeckillCloseException {
         Date nowTime = new Date();
