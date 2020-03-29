@@ -51,13 +51,13 @@ public class SeckillServiceImpl implements SeckillService {
             throws SeckillException, RepeatKillException, SeckillCloseException {
         Date nowTime = new Date();
         try {
-            int updateCount = secKillDao.reduceNumber(seckillId,nowTime);
-            if(updateCount<=0){
-                throw new SeckillCloseException("秒杀已结束");
+            int insertCount = successKillDao.insertSuccessKilled(seckillId,userPhone,nowTime);
+            if(insertCount<=0){
+                throw new RepeatKillException("您已经买过了");
             }else {
-                int insertCount = successKillDao.insertSuccessKilled(seckillId,userPhone,nowTime);
-                if(insertCount<=0){
-                    throw new RepeatKillException("您已经买过了");
+                int updateCount = secKillDao.reduceNumber(seckillId,nowTime);
+                if(updateCount<=0){
+                    throw new SeckillCloseException("秒杀已结束");
                 }else {
                     SuccessKilled successKilled = successKillDao.queryByIdWithSeckill(seckillId,userPhone);
                     return new SeckillResponse(seckillId, SeckillStateEnum.SUCCESS,successKilled);
