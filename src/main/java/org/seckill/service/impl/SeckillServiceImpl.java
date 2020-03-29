@@ -11,6 +11,7 @@ import org.seckill.exception.RepeatKillException;
 import org.seckill.exception.SeckillCloseException;
 import org.seckill.exception.SeckillException;
 import org.seckill.service.SeckillService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,8 +29,10 @@ import java.util.List;
 @Slf4j
 public class SeckillServiceImpl implements SeckillService {
 
+    @Autowired
     private SecKillDao secKillDao;
 
+    @Autowired
     private SuccessKillDao successKillDao;
 
     @Override
@@ -44,7 +47,7 @@ public class SeckillServiceImpl implements SeckillService {
 
     @Override
     @Transactional
-    public SeckillResponse executeSeckill(long seckillId, long userPhone, String md5)
+    public SeckillResponse executeSeckill(long seckillId, String userPhone, String md5)
             throws SeckillException, RepeatKillException, SeckillCloseException {
         Date nowTime = new Date();
         try {
@@ -52,7 +55,7 @@ public class SeckillServiceImpl implements SeckillService {
             if(updateCount<=0){
                 throw new SeckillCloseException("秒杀已结束");
             }else {
-                int insertCount = successKillDao.insertSuccessKilled(seckillId,userPhone);
+                int insertCount = successKillDao.insertSuccessKilled(seckillId,userPhone,nowTime);
                 if(insertCount<=0){
                     throw new RepeatKillException("您已经买过了");
                 }else {

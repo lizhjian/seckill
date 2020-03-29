@@ -1,7 +1,10 @@
 package org.seckill.dto;
 
+import lombok.Data;
 import org.seckill.entity.SuccessKilled;
 import org.seckill.enums.SeckillStateEnum;
+
+import java.io.Serializable;
 
 /**
  * <pre>
@@ -10,7 +13,8 @@ import org.seckill.enums.SeckillStateEnum;
  * date ：2020-03-29 11:51
  * </pre>
  */
-public class SeckillResponse {
+@Data
+public class SeckillResponse implements Serializable {
 
     private long seckillId;
 
